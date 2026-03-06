@@ -1,0 +1,112 @@
+/* الصفحة */
+
+.leaderboard {
+    min-height: 100vh;
+    background: #0F172A;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 20px;
+    color: #F8FAFC;
+}
+
+
+.leader-title {
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+
+/* list */
+
+.leader-list {
+    width: 600px;
+    max-width: 95%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+/* card */
+
+.leaderboard .leader-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    border-radius: 12px;
+    background: #1E293B;
+    transition: .25s;
+    box-shadow: 0 10px 20px rgba(0,0,0,.4);
+}
+
+    .leaderboard .leader-card:hover {
+        transform: translateY(-3px);
+        background: #334155;
+    }
+
+
+/* rank */
+
+.leaderboard .rank {
+    font-weight: bold;
+    font-size: 18px;
+    width: 40px;
+}
+
+
+/* avatar */
+
+.leaderboard .avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: #2563EB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    margin-right: 10px;
+}
+
+
+/* name */
+
+.leaderboard .player {
+    flex: 1;
+    margin-left: 10px;
+    font-weight: 500;
+}
+
+
+/* score */
+
+.leaderboard .score {
+    color: #FBBF24;
+    font-weight: bold;
+}
+
+/* اول ثلاثة لاعبين */
+
+.leaderboard .rank-0 {
+    background: linear-gradient(135deg,#FBBF24,#f59e0b);
+    color: #111;
+    font-weight: bold;
+    box-shadow: 0 0 20px rgba(251,191,36,.6);
+}
+
+
+.leaderboard .rank-1 {
+    background: linear-gradient(135deg,#E5E7EB,#CBD5F5);
+    color: #111;
+    font-weight: bold;
+}
+
+
+.leaderboard .rank-2 {
+    background: linear-gradient(135deg,#F59E0B,#D97706);
+    color: white;
+    font-weight: bold;
+}

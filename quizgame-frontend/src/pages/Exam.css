@@ -1,0 +1,174 @@
+/* الصفحة */
+
+.exam-page {
+    background: #0F172A;
+    min-height: 100vh;
+    padding: 40px;
+    color: #F8FAFC;
+    font-family: Cairo,sans-serif;
+}
+
+
+/* عنوان الامتحان */
+
+.exam-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+
+/* التايمر */
+
+.exam-timer {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #1E293B;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #F8FAFC;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+    margin-bottom: 25px;
+}
+
+
+/* كارت السؤال */
+
+.question-card {
+    background: #1E293B;
+    padding: 28px;
+    border-radius: 14px;
+    margin-top: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+    transition: 0.3s;
+}
+
+
+    .question-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    }
+
+
+    /* عنوان السؤال */
+
+    .question-card h4 {
+        font-size: 20px;
+        margin-bottom: 12px;
+        color: #F8FAFC;
+    }
+
+
+    /* الدرجة */
+
+    .question-card p {
+        color: #94A3B8;
+        margin-bottom: 10px;
+    }
+
+
+/* الاختيارات */
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+
+/* كارت الاختيار */
+
+.option-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #0F172A;
+    padding: 14px 18px;
+    border-radius: 10px;
+    border: 1px solid #334155;
+    cursor: pointer;
+    font-size: 16px;
+    color: #F8FAFC;
+    transition: 0.25s;
+}
+
+
+    /* Hover */
+
+    .option-card:hover {
+        border: 1px solid #2563EB;
+        background: #1E293B;
+    }
+
+
+    /* الاختيار المحدد */
+
+    .option-card.selected {
+        background: #2563EB;
+        border: 1px solid #2563EB;
+    }
+
+
+    /* اخفاء شكل الراديو الافتراضي */
+
+    .option-card input {
+        accent-color: #2563EB;
+    }
+
+
+/* textarea المقالي */
+
+textarea {
+    width: 100%;
+    min-height: 120px;
+    margin-top: 10px;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background: #0F172A;
+    color: #F8FAFC;
+}
+
+
+/* زر الإرسال */
+
+.submit-btn {
+    margin-top: 30px;
+    width: 100%;
+    padding: 16px;
+    font-size: 18px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg,#2563EB,#7C3AED);
+    color: white;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+
+    .submit-btn:hover {
+        transform: scale(1.03);
+        box-shadow: 0 10px 25px rgba(37,99,235,0.4);
+    }
+
+
+/* Responsive */
+
+@media (max-width:768px) {
+
+    .exam-page {
+        padding: 20px;
+    }
+
+    .exam-title {
+        font-size: 24px;
+    }
+
+    .question-card {
+        padding: 20px;
+    }
+}

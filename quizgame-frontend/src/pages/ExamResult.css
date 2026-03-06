@@ -1,0 +1,106 @@
+/* الصفحة */
+
+.result-page {
+    background: #0F172A;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Cairo,sans-serif;
+    color: #F8FAFC;
+}
+
+
+/* الكارت */
+
+.result-card {
+    background: #1E293B;
+    padding: 40px;
+    border-radius: 16px;
+    width: 420px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    animation: fadeIn 0.5s ease;
+}
+
+
+/* العنوان */
+
+.result-title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+
+/* الصف */
+
+.result-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #334155;
+    font-size: 16px;
+}
+
+
+/* الدرجة */
+
+.score {
+    color: #FBBF24;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
+/* الحالة */
+
+.status {
+    color: #22c55e;
+    font-weight: bold;
+}
+
+
+/* زر الرجوع */
+
+.back-btn {
+    margin-top: 30px;
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background: linear-gradient(135deg,#2563EB,#7C3AED);
+    color: white;
+    transition: 0.3s;
+}
+
+
+    .back-btn:hover {
+        transform: scale(1.05);
+    }
+
+
+/* loading */
+
+.loading {
+    color: white;
+    text-align: center;
+    margin-top: 50px;
+}
+
+
+/* animation */
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
