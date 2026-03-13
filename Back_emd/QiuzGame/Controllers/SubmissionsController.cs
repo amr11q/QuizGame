@@ -69,14 +69,14 @@ namespace QuizGame.Controllers
 
             if (score > 0)
             {
-                var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)!.Value);
+                var player = _context.Users.FirstOrDefault(u => u.Id == submission.UserId);
 
-                var user = _context.Users.First(u => u.Id == userId);
-
-                user.TotalPoints += score;
-                user.WeeklyPoints += score;
+                if (player != null)
+                {
+                    player.TotalPoints += score;
+                    player.WeeklyPoints += score;
+                }
             }
-
             _context.SaveChanges();
 
             return Ok(new { message = "Submission corrected" });
@@ -197,12 +197,23 @@ namespace QuizGame.Controllers
         // ⭐ Submit full exam (Exam.jsx)
         // ======================================================
         [Authorize(Roles = "User,Admin")]
+        [Authorize]
         [HttpPost("submit-exam")]
         public IActionResult SubmitExam([FromBody] SubmitExamDto dto)
         {
-            var userId = int.Parse(
-                User.FindFirst(ClaimTypes.NameIdentifier)!.Value
-            );
+            // جلب userId من التوكن
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+
+            if (userIdClaim == null)
+                return Unauthorized();
+
+            var userId = int.Parse(userIdClaim.Value);
+
+            // التأكد أن المستخدم موجود
+            var user = _context.Users.FirstOrDefault(u => u.Id == userId);
+
+            if (user == null)
+                return Unauthorized();
 
             // منع حل الامتحان مرتين
             var alreadySolved = _context.Submissions
@@ -210,9 +221,6 @@ namespace QuizGame.Controllers
 
             if (alreadySolved)
                 return BadRequest("You already submitted this exam");
-
-            // جلب المستخدم مرة واحدة فقط
-            var user = _context.Users.First(u => u.Id == userId);
 
             foreach (var ans in dto.Answers)
             {
@@ -225,7 +233,7 @@ namespace QuizGame.Controllers
 
                 int score = 0;
 
-                // تصحيح سؤال الاختيارات
+                // تصحيح MCQ
                 if (question.Type == QuestionType.MCQ)
                 {
                     var correct = question.Options
@@ -235,24 +243,31 @@ namespace QuizGame.Controllers
                         score = question.Points;
                 }
 
-                // حفظ الإجابة
-                _context.Submissions.Add(new Submission
+                var submission = new Submission
                 {
                     UserId = userId,
                     QuizId = dto.QuizId,
                     QuestionId = ans.QuestionId,
                     SelectedOptionId = ans.SelectedOptionId,
+                    AnswerText = ans.EssayAnswer,
                     Score = score,
                     EarnedPoints = score,
-                    IsCorrected = true,
-                    SubmittedAt = DateTime.Now
-                });
+                    SubmittedAt = DateTime.Now,
+                    IsCorrected = question.Type == QuestionType.MCQ
+                };
+
+                _context.Submissions.Add(submission);
 
                 // إضافة النقاط للمستخدم
                 if (score > 0)
                 {
-                    user.TotalPoints += score;
-                    user.WeeklyPoints += score;
+                    var player = _context.Users.FirstOrDefault(u => u.Id == submission.UserId);
+
+                    if (player != null)
+                    {
+                        player.TotalPoints += score;
+                        player.WeeklyPoints += score;
+                    }
                 }
             }
 
@@ -310,6 +325,8 @@ namespace QuizGame.Controllers
     public class ExamAnswerDto
     {
         public int QuestionId { get; set; }
-        public int SelectedOptionId { get; set; }
+        public int? SelectedOptionId { get; set; }
+
+        public string? EssayAnswer { get; set; }
     }
 }

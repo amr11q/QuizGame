@@ -9,7 +9,7 @@ import EssayCorrection from "./pages/EssayCorrection";
 import AdminGuard from "./guards/AdminGuard";
 export default function App() {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename="/admin">
             <Routes>
                 <Route
                     path="/admin"

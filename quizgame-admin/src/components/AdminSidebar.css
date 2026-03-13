@@ -1,0 +1,69 @@
+.admin-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 55px;
+    background: #1E293B;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+    z-index: 1000;
+}
+
+/* اسم الادمن */
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+    .nav-left h3 {
+        color: #F8FAFC;
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+/* الروابط */
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+    margin-left: 40px;
+}
+
+    .nav-links a {
+        color: #CBD5F5;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+        padding: 6px 10px;
+        border-radius: 6px;
+        transition: 0.2s;
+    }
+
+        .nav-links a:hover {
+            background: #2563EB;
+            color: white;
+        }
+
+/* زر تسجيل الخروج */
+
+.logout-btn {
+    background: #ef4444;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+    .logout-btn:hover {
+        background: #dc2626;
+    }

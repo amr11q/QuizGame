@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import "./AdminSidebar.css";
 
 export default function Navbar() {
     const navigate = useNavigate();
@@ -9,24 +10,21 @@ export default function Navbar() {
     };
 
     return (
-        <div style={{
-            width: "220px",
-            minHeight: "100vh",
-            background: "#111",
-            color: "#fff",
-            padding: "20px"
-        }}>
-            <h3>Admin Panel</h3>
+        <div className="admin-navbar">
 
-            <ul style={{ listStyle: "none", padding: 0 }}>
-                <li><Link to="/admin/dashboard">Dashboard</Link></li>
-                <li><Link to="/admin/quizzes">Quizzes</Link></li>
-                <li><Link to="/admin/questions">Questions</Link></li>
-            </ul>
+            <div className="nav-left">
+                <h3>Admin Panel</h3>
 
-            <button onClick={logout} style={{ marginTop: "20px" }}>
+                <div className="nav-links">
+                    <Link to="/admin/dashboard">Dashboard</Link>
+                    <Link to="/admin/quizzes">Quizzes</Link>
+                </div>
+            </div>
+
+            <button onClick={logout} className="logout-btn">
                 Logout
             </button>
+
         </div>
     );
 }

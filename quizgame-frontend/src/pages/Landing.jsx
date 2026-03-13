@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import "./Landing.css";
-
 export default function Landing() {
 
     const navigate = useNavigate();
@@ -13,12 +12,11 @@ export default function Landing() {
             <div className="particles"></div>
 
             <div className="navbar">
-                <div className="logo">🏆 QuizGame</div>
+                <div className="logo">🏆 BrainBattle</div>
             </div>
 
 
             <div className="hero">
-
                 <h1>
                     اختبر معلوماتك
                     <br />

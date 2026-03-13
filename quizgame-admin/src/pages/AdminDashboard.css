@@ -1,0 +1,153 @@
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #1e293b, #020617);
+}
+
+/* الخلفية */
+
+.admin-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center; /* يخلي الكارت في النص */
+    align-items: center;
+    padding: 20px;
+    margin-left: 550px;
+}
+
+
+/* الكارت الرئيسي */
+
+.dashboard-card {
+    width: 820px;
+    max-width: 95%; /* يمنع كسر التصميم على الموبايل */
+    background: rgba(30,41,59,.85);
+    backdrop-filter: blur(14px);
+    padding: 200px;
+    border-radius: 22px;
+    border: 1px solid rgba(255,255,255,.08);
+    box-shadow: 0 0 40px rgba(59,130,246,.35), inset 0 0 20px rgba(255,255,255,.03);
+    color: white;
+}
+
+
+    /* العنوان */
+
+    .dashboard-card h1 {
+        text-align: center;
+        font-size: 54px;
+        margin-bottom: 65px;
+        letter-spacing: 5px;
+        text-shadow: 0 0 18px rgba(255,255,255,.25);
+    }
+
+
+/* الاحصائيات */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 30px;
+}
+
+
+/* stat card */
+
+.stat-box {
+    background: linear-gradient(145deg,#1e293b,#111827);
+    padding: 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,.06);
+    text-align: center;
+    font-size: 26px;
+    font-weight: 600;
+    transition: .25s;
+    box-shadow: 0 6px 12px rgba(0,0,0,.5), inset 0 0 8px rgba(255,255,255,.04);
+}
+
+    .stat-box:hover {
+        transform: translateY(-3px);
+        border-color: #2563EB;
+        box-shadow: 0 10px 25px rgba(37,99,235,.45);
+    }
+
+
+/* الأزرار */
+
+.btn {
+    width: 100%;
+    padding: 13px;
+    margin-top: 14px;
+    border-radius: 10px;
+    border: 2px solid transparent;
+    font-size: 25px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .25s;
+    letter-spacing: .4px;
+    box-shadow: 0 6px 15px rgba(0,0,0,.6);
+}
+
+
+/* زر التصحيح */
+
+.essay {
+    background: linear-gradient(90deg,#22d3ee,#38bdf8);
+    border-color: #67e8f9;
+    color: #022c22;
+}
+
+    .essay:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(34,211,238,.6);
+    }
+
+
+/* زر تصفير النقاط */
+
+.reset {
+    background: linear-gradient(90deg,#fb923c,#f97316);
+    border-color: #fdba74;
+}
+
+    .reset:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(249,115,22,.55);
+    }
+
+
+/* زر الاسبوع */
+
+.weekly {
+    background: linear-gradient(90deg,#fde047,#facc15);
+    border-color: #fde047;
+    color: black;
+}
+
+    .weekly:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(250,204,21,.6);
+    }
+
+
+/* 📱 تعديل الموبايل */
+
+@media (max-width: 768px) {
+
+    .dashboard-card {
+        padding: 30px 20px;
+    }
+
+        .dashboard-card h1 {
+            font-size: 26px;
+        }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-container {
+        margin-left: 0;
+    }
+}

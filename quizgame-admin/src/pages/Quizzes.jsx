@@ -2,13 +2,16 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api/api";
 import CreateQuizForm from "../components/CreateQuizForm";
+import "./Quizzes.css";
 
 export default function Quizzes() {
+
     const [quizzes, setQuizzes] = useState([]);
     const [showForm, setShowForm] = useState(false);
     const navigate = useNavigate();
 
     const handleDeleteQuiz = async (quizId) => {
+
         const confirmDelete = window.confirm(
             "⚠️ هل أنت متأكد من حذف هذا الكويز؟ سيتم حذف كل الأسئلة والإجابات."
         );
@@ -16,95 +19,128 @@ export default function Quizzes() {
         if (!confirmDelete) return;
 
         try {
+
             await api.delete(`/quizzes/${quizId}`);
+
             alert("✅ تم حذف الكويز بنجاح");
 
             setQuizzes(prev => prev.filter(q => q.id !== quizId));
-        } catch (err) {
+
+        } catch {
+
             alert("❌ فشل حذف الكويز");
-            console.error(err);
+
         }
+
     };
 
-
     const loadQuizzes = () => {
+
         api
             .get("/quiz")
             .then(res => setQuizzes(res.data))
             .catch(err => console.error(err));
+
     };
 
     useEffect(() => {
+
         loadQuizzes();
+
     }, []);
 
     return (
-        <div>
-            <h1>Quizzes</h1>
 
-            {/* زر إنشاء مسابقة */}
-            <button
-                onClick={() => setShowForm(true)}
-                style={{ marginBottom: "15px" }}
-            >
-                + Create Quiz
-            </button>
+        <div className="quizzes-page">
+
+            <div className="quizzes-container">
+
+                {/* العنوان + الزر */}
+
+                <div className="header-section">
+
+                    <h1 className="page-title">Quizzes</h1>
+
+                    <button
+                        className="create-btn"
+                        onClick={() => setShowForm(true)}
+                    >
+                        + Create Quiz
+                    </button>
+
+                </div>
 
 
-           
+                {showForm && (
+                    <CreateQuizForm
+                        onClose={() => setShowForm(false)}
+                        onCreated={loadQuizzes}
+                    />
+                )}
 
-            {/* فورم الإنشاء */}
-            {showForm && (
-                <CreateQuizForm
-                    onClose={() => setShowForm(false)}
-                    onCreated={loadQuizzes}
-                />
-            )}
+                {quizzes.length === 0 ? (
 
-            {quizzes.length === 0 ? (
-                <p>No quizzes yet</p>
-            ) : (
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Active</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {quizzes.map(q => (
-                            <tr key={q.id}>
-                                <td>{q.title}</td>
-                                <td>{q.isActive ? "Active" : "Inactive"}</td>
-                                <td>
-                                    <button
-                                        onClick={() => navigate(`/admin/quizzes/${q.id}/questions`)}
-                                    >
-                                        Questions
-                                    </button>
+                    <p className="empty-text">No quizzes yet</p>
 
-                                    <button
-                                        style={{
-                                            marginLeft: "10px",
-                                            padding: "6px 12px",
-                                            background: "#dc3545",
-                                            color: "#fff",
-                                            border: "none",
-                                            borderRadius: "4px",
-                                            cursor: "pointer"
-                                        }}
-                                        onClick={() => handleDeleteQuiz(q.id)}
-                                    >
-                                        Delete
-                                    </button>
+                ) : (
 
-                                </td>
+                    <table className="quiz-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>Title</th>
+                                <th>Active</th>
+                                <th>Actions</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
-            )}
+
+                        </thead>
+
+                        <tbody>
+
+                            {quizzes.map(q => (
+
+                                <tr key={q.id}>
+
+                                    <td>{q.title}</td>
+
+                                    <td>
+                                        {q.isActive ? "Active" : "Inactive"}
+                                    </td>
+
+                                    <td>
+
+                                        <button
+                                            className="questions-btn"
+                                            onClick={() =>
+                                                navigate(`/admin/quizzes/${q.id}/questions`)
+                                            }
+                                        >
+                                            Add Questions
+                                        </button>
+
+                                        <button
+                                            className="delete-btn"
+                                            onClick={() => handleDeleteQuiz(q.id)}
+                                        >
+                                            Delete
+                                        </button>
+
+                                    </td>
+
+                                </tr>
+
+                            ))}
+
+                        </tbody>
+
+                    </table>
+
+                )}
+
+            </div>
+
         </div>
+
     );
 }

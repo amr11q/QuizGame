@@ -1,5 +1,8 @@
-node_modules/
 .vs/
-bin/
 obj/
-.env
+bin/
+node_modules/
+*.sqlite
+*.suo
+*.user
+*.lock

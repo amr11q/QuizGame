@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../api/api";
 import CreateQuestionForm from "../components/CreateQuestionForm";
-
+import "./QuizQuestions.css";
 export default function QuizQuestions() {
     const { quizId } = useParams();
 
@@ -50,60 +50,70 @@ export default function QuizQuestions() {
     useEffect(() => {
         loadQuestions();
     }, [quizId]);
-
     return (
-        <div>
-            <h1>Quiz Questions</h1>
+        <div className="quiz-questions-page">
 
-            <button onClick={() => setShowForm(true)}>
-                + Add Question
-            </button>
+            <div className="quiz-header">
+
+                <h1>Quiz Questions</h1>
+
+                <button
+                    className="add-btn"
+                    onClick={() => setShowForm(true)}
+                >
+                    + Add Question
+                </button>
+
+            </div>
 
             {showForm && (
-                <CreateQuestionForm
-                    quizId={quizId}
-                    onClose={() => setShowForm(false)}
-                    onCreated={loadQuestions}
-                />
+                <div className="modal-overlay">
+
+                    <div className="modal-box">
+
+                        <CreateQuestionForm
+                            quizId={quizId}
+                            onClose={() => setShowForm(false)}
+                            onCreated={loadQuestions}
+                        />
+
+                    </div>
+
+                </div>
             )}
 
             {loading ? (
-                <p>Loading...</p>
+                <p className="loading">Loading...</p>
             ) : questions.length === 0 ? (
-                <p>No questions yet</p>
+                <p className="no-questions">No questions yet</p>
             ) : (
-                        <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                            {questions.map(q => (
-                                <div
-                                    key={q.id}
-                                    style={{
-                                        border: "1px solid #444",
-                                        padding: "12px",
-                                        borderRadius: "8px",
-                                        background: "#1e1e1e"
-                                    }}
-                                >
-                                    <h3 style={{ margin: 0 }}>{q.text}</h3>
-                                    <p style={{ opacity: 0.8 }}>{q.points} pts</p>
+                <div className="questions-grid">
 
-                                    <div style={{ display: "flex", gap: "10px" }}>
-                                        <button onClick={() => {
-                                            setEditingQuestion(q);
-                                            setShowForm(true);
-                                        }}>
-                                            Edit
-                                        </button>
+                            {questions.map((q, index) => (
+
+                                <div className="question-card" key={q.id}>
+
+                                    <h3>Question {index + 1}</h3>
+
+                                    <p className="question-points">{q.points} pts</p>
+
+                                    <div className="card-actions">
+                                        <button className="edit-btn">Edit</button>
                                         <button
-                                            style={{ color: "red" }}
+                                            className="delete-btn"
                                             onClick={() => handleDelete(q.id)}
                                         >
                                             Delete
                                         </button>
                                     </div>
+
                                 </div>
+
                             ))}
-                        </div>
+
+                </div>
             )}
+
         </div>
     );
 }

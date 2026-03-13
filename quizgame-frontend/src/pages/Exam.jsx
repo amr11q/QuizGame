@@ -21,6 +21,9 @@ export default function Exam() {
     const [timeLeft, setTimeLeft] = useState(0);
     const [now, setNow] = useState(Date.now());
 
+    const [essayAnswers, setEssayAnswers] = useState({});
+
+
     useEffect(() => {
 
         const userId = localStorage.getItem("userId");
@@ -144,22 +147,20 @@ export default function Exam() {
 
         try {
 
-            setSubmitting(true);
-
             const answersList = Object.keys(answers).map(qId => ({
                 questionId: Number(qId),
-                selectedOptionId: answers[qId] || null
+                selectedOptionId:
+                    typeof answers[qId] === "number" ? Number(answers[qId]) : null,
+                essayAnswer:
+                    typeof answers[qId] === "string" ? answers[qId] : null
             }));
 
             const payload = {
-
-                quizId,
+                quizId: Number(quizId),
                 answers: answersList
-
             };
 
             const res = await api.post("/submissions/submit-exam", payload);
-
             alert("✅ تم إرسال الامتحان بنجاح");
 
             if (res.data.totalPoints)
@@ -170,13 +171,22 @@ export default function Exam() {
 
             navigate("/dashboard");
 
-        } catch (err) {
+        }
 
-            console.log(err);
+        catch (err) {
+            console.log("FULL ERROR:", err);
+            console.log("SERVER ERROR:", err?.response?.data);
 
-            alert("❌ حدث خطأ أثناء إرسال الامتحان");
+            if (err?.response?.data) {
+                alert(JSON.stringify(err.response.data, null, 2));
+            } else {
+                alert("حدث خطأ أثناء إرسال الامتحان");
+            }
+        }
 
-        } finally {
+
+
+        finally {
 
             setSubmitting(false);
 
@@ -292,17 +302,57 @@ export default function Exam() {
 
                             {q.type === 1 && (
 
-                                <textarea
-                                    className="essay-answer"
-                                    placeholder="اكتب إجابتك هنا..."
-                                    value={answers[q.id] || ""}
-                                    onChange={(e) =>
-                                        setAnswers(prev => ({
-                                            ...prev,
-                                            [q.id]: e.target.value
-                                        }))
-                                    }
-                                />
+                                <div className="essay-box">
+
+                                    <textarea
+                                        className="essay-answer"
+                                        placeholder="اكتب إجابتك هنا..."
+                                        value={typeof answers[q.id] === "string" && !answers[q.id].startsWith("data:image")
+                                            ? answers[q.id]
+                                            : ""}
+                                        onChange={(e) =>
+                                            setAnswers(prev => ({
+                                                ...prev,
+                                                [q.id]: e.target.value
+                                            }))
+                                        }
+                                    />
+
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={(e) => {
+
+                                            const file = e.target.files[0];
+                                            if (!file) return;
+
+                                            const reader = new FileReader();
+
+                                            reader.onload = () => {
+
+                                                setAnswers(prev => ({
+                                                    ...prev,
+                                                    [q.id]: reader.result
+                                                }));
+
+                                            };
+
+                                            reader.readAsDataURL(file);
+
+                                        }}
+                                    />
+
+                                    {answers[q.id]?.startsWith("data:image") && (
+
+                                        <img
+                                            src={answers[q.id]}
+                                            alt="preview"
+                                            style={{ width: "200px", marginTop: "10px", borderRadius: "8px" }}
+                                        />
+
+                                    )}
+
+                                </div>
 
                             )}
 

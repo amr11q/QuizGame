@@ -1,0 +1,168 @@
+/* الصفحة */
+
+.essay-page {
+    min-height: 100vh;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    background: #0F172A;
+    color: white;
+    font-family: Segoe UI;
+    align-items: flex-start;
+    margin-left: 720px; /* للكمبيوتر */
+}
+
+
+/* العنوان */
+
+.essay-title {
+    font-size: 32px;
+    margin-bottom: 25px;
+    text-shadow: 0 0 15px rgba(255,255,255,.25);
+}
+
+
+/* فلتر الامتحانات */
+
+.essay-filter {
+    padding: 10px 14px;
+    border-radius: 6px;
+    border: 1px solid #334155;
+    background: #1E293B;
+    color: white;
+    margin-bottom: 35px;
+}
+
+
+/* الكارت */
+
+.essay-card {
+    width: 650px;
+    max-width: 95%;
+    background: rgba(30,41,59,.75);
+    border: 1px solid rgba(255,255,255,.08);
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,.6);
+    transition: .25s;
+}
+
+
+    .essay-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 15px 40px rgba(0,0,0,.8);
+    }
+
+
+/* الإجابة */
+
+.essay-answer {
+    background: #020617;
+    padding: 12px;
+    border-radius: 6px;
+    margin-top: 6px;
+    border: 1px solid #1e293b;
+    white-space: pre-wrap;
+}
+
+
+/* الصورة */
+
+.essay-image {
+    max-width: 100%;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+
+/* input + button */
+
+.essay-actions {
+    margin-top: 18px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap; /* مهم للموبايل */
+}
+
+
+/* input */
+
+.essay-score {
+    width: 120px;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #334155;
+    background: #020617;
+    color: white;
+}
+
+
+/* زر الحفظ */
+
+.essay-save {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    background: linear-gradient(90deg,#2563EB,#7C3AED);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(99,102,241,.5);
+    transition: .2s;
+}
+
+    .essay-save:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 20px rgba(99,102,241,.7);
+    }
+
+
+/* حالة التحميل */
+
+.essay-loading {
+    padding: 40px;
+    color: white;
+    text-align: center;
+}
+
+
+/* لا يوجد بيانات */
+
+.essay-empty {
+    opacity: .8;
+}
+
+
+/* 📱 Responsive */
+
+@media (max-width: 768px) {
+
+    .essay-page {
+        margin-left: 0; /* يشيل المارجن للموبايل */
+        padding: 20px;
+    }
+
+    .essay-title {
+        font-size: 24px;
+    }
+
+    .essay-card {
+        width: 100%;
+    }
+
+    .essay-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .essay-score {
+        width: 100%;
+    }
+
+    .essay-save {
+        width: 100%;
+    }
+}

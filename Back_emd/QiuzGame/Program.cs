@@ -4,7 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using QuizGame.Data;
-
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -129,33 +129,47 @@ builder.Services.AddCors(options =>
 // =======================
 // Build App
 // =======================
-
 var app = builder.Build();
 
-// =======================
-// Middleware
-// =======================
-
-if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseDeveloperExceptionPage();
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "QuizGame API v1");
-        c.RoutePrefix = "swagger";
-    });
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "QuizGame API v1");
+    c.RoutePrefix = "swagger";
+});
 
 app.UseHttpsRedirection();
 
+app.UseCors("AllowFrontend");
+
+// مهم
 app.UseStaticFiles();
 
-app.UseCors("AllowFrontend");
+// Admin static files
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(builder.Environment.WebRootPath, "admin")),
+    RequestPath = "/admin"
+});
 
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// fallback admin
+app.MapWhen(ctx => ctx.Request.Path.StartsWithSegments("/admin"), adminApp =>
+{
+    adminApp.Run(async ctx =>
+    {
+        ctx.Response.ContentType = "text/html";
+        await ctx.Response.SendFileAsync(
+            Path.Combine(builder.Environment.WebRootPath, "admin", "index.html"));
+    });
+});
+
+// fallback user
+app.MapFallbackToFile("index.html");
 
 app.Run();

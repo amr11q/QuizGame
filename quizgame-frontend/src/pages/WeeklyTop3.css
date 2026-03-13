@@ -15,7 +15,7 @@
 .weekly-title {
     font-size: 40px;
     font-weight: 700;
-    margin-bottom: 70px;
+    margin-bottom: 170px;
     letter-spacing: 1px;
     text-shadow: 0 5px 20px rgba(0,0,0,.6);
 }
@@ -27,7 +27,7 @@
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    gap: 40px;
+    gap: 30px;
     flex-wrap: nowrap;
 }
 
@@ -106,7 +106,7 @@
 /* player name */
 
 .player-name {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 700;
     margin: 12px 0;
 }

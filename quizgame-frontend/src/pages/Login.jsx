@@ -34,11 +34,14 @@ export default function Login() {
                     ? { email: form.email, password: form.password }
                     : form;
 
+            // 🧹 مسح أي توكن قديم
+            localStorage.clear();
+
             const res = await api.post(url, payload);
 
             if (mode === "login") {
 
-                // حفظ التوكن
+                // حفظ التوكن الجديد
                 localStorage.setItem("token", res.data.token);
 
                 // 🧹 مسح أي تايمر امتحان قديم
@@ -48,7 +51,6 @@ export default function Login() {
                     }
                 });
 
-                // الانتقال للداشبورد
                 navigate("/dashboard");
 
             } else {
@@ -58,7 +60,6 @@ export default function Login() {
         } catch (err) {
             setError("Login failed");
         }
-
     };
 
     return (

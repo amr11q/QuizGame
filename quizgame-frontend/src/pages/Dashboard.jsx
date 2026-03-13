@@ -94,7 +94,7 @@ export default function Dashboard() {
 
             {/* Header */}
             <div className="dashboard-header">
-                <h1>Quiz Game</h1>
+                <h1>BrainBattle</h1>
                 <p>مسابقة يومية – اختبر معلوماتك ونافس غيرك</p>
             </div>
 
@@ -159,37 +159,39 @@ export default function Dashboard() {
 
                 {/* Card 3 */}
                 <div className="card">
-                    <h3>📌 تعليمات</h3>
-
-                    <ul>
+                    <h3 class="card-title">تعليمات</h3>
+                    <p class="card-text">  <ul>
                         <li>⏱️ الالتزام بالوقت شرط أساسي لقبول المشاركة.</li>
                         <li>🔁 لا يمكن تعديل الإجابة بعد الإرسال.</li>
                         <li>❌ أي محاولة غش تؤدي إلى استبعاد المشاركة.</li>
                         <li>الترتيب يعتمد على دقة الحل وليس السرعة فقط.</li>
                         <li>القرار النهائي للتقييم يرجع لإدارة المسابقة.</li>
-                        
-                    </ul>
+
+                    </ul></p>
+
+                  
                 </div>
 
                 {/* Card 4 */}
                 <div className="card">
                     <h3>🔥 نصيحة للمنافسة</h3>
-                    <p>
-                        لا تهتم بالسرعة فقط، ركّز على وضوح الحل
-                        وتسلسل الأفكار لتحصل على تقييم أعلى.
-                    </p>
-                    <p>الاستمرارية اليومية ترفع ترتيبك.</p>
+                    <ul>
+                        <li> اقرأ السؤال جيدًا قبل الإجابة، فقد تخدعك التفاصيل الصغيرة. </li>
+                        <li> كل إجابة صحيحة تقربك خطوة من الصدارة… فكر جيدًا قبل أن تختار. </li>
+                        <li> لا تتسرع في الإجابة، دقيقة تفكير إضافية قد تقودك إلى القمة. </li>
+                        <li> الاستمرارية اليومية ترفع ترتيبك . </li>
+                    </ul>
+                  
                 </div>
 
                 {/* Card 5 */}
-                <div className="card">
+                <div class="card stats-card">
                     <h3>📊 إحصائياتك</h3>
                     <div>
-                        عدد المشاركات: {stats.attempts}
+                        <ul><li> عدد المشاركات :{stats.attempts} </li></ul> 
                     </div>
-
                     <div>
-                        أفضل ترتيب: {stats.bestRank ? "#" + stats.bestRank : "-"}
+                        <ul><li> أفضل ترتيب:{stats.bestRank ? " " + stats.bestRank : "-"}</li></ul>   
                     </div>
                    
                 </div>

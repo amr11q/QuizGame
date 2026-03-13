@@ -1,0 +1,163 @@
+/* الصفحة */
+
+.quizzes-page {
+    min-height: 100vh;
+    background: #0F172A;
+    color: #F8FAFC;
+    padding: 140px;
+    font-family: Segoe UI;
+    margin-left:570px;
+}
+
+
+/* الكونتينر */
+
+.quizzes-container {
+    max-width: 900px;
+    margin: auto;
+}
+
+
+/* الهيدر */
+
+.header-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+
+/* العنوان */
+
+.page-title {
+    font-size: 72px;
+    font-weight: 600;
+}
+
+
+/* زر إنشاء كويز */
+
+.create-btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    background: linear-gradient(90deg,#2563EB,#7C3AED);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s;
+}
+
+    .create-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0 15px rgba(99,102,241,.6);
+    }
+
+
+/* الجدول */
+
+.quiz-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #1E293B;
+    border-radius: 10px;
+    overflow: hidden;
+    font-size:35px;
+}
+
+
+    /* الهيدر */
+
+    .quiz-table thead {
+        background: #020617;
+    }
+
+
+    /* الخلايا */
+
+    .quiz-table th,
+    .quiz-table td {
+        padding: 24px;
+        text-align: left;
+        border-bottom: 1px solid #334155;
+    }
+
+
+    /* الصف */
+
+    .quiz-table tr:hover {
+        background: #0f172a;
+    }
+
+
+/* زر الأسئلة */
+
+.questions-btn {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    background: #2563EB;
+    color: white;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: .2s;
+}
+
+    .questions-btn:hover {
+        background: #1d4ed8;
+    }
+
+
+/* زر الحذف */
+
+.delete-btn {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    background: #dc2626;
+    color: white;
+    cursor: pointer;
+    transition: .2s;
+}
+
+    .delete-btn:hover {
+        background: #b91c1c;
+    }
+
+
+/* لا يوجد كويز */
+
+.empty-text {
+    opacity: .7;
+    margin-top: 50px;
+}
+
+
+/* 📱 Responsive */
+
+@media(max-width:768px) {
+
+    .quizzes-page {
+        padding: 20px;
+    }
+
+    .header-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .quiz-table th,
+    .quiz-table td {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .questions-btn,
+    .delete-btn {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+}

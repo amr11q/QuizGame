@@ -9,6 +9,5 @@ public class SubmitAnswerDto
     public int? SelectedOptionId { get; set; }
     public string? AnswerText { get; set; }
     public IFormFile? Image { get; set; }
-   
 
 }

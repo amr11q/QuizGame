@@ -1,0 +1,210 @@
+/* الصفحة */
+
+.quiz-questions-page {
+    min-height: 100vh;
+    background: #0F172A;
+    color: #F8FAFC;
+    font-family: Segoe UI;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 770px;
+}
+
+
+/* العنوان */
+
+.quiz-title {
+    font-size: 52px;
+    font-weight: 700;
+    margin-bottom: 35px;
+    letter-spacing: .5px;
+}
+
+
+/* زر إضافة */
+
+.add-question-btn {
+    background: linear-gradient(135deg,#2563EB,#7C3AED);
+    border: none;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-bottom: 35px;
+    transition: .25s;
+}
+
+    .add-question-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(124,58,237,.5);
+    }
+
+
+/* فورم السؤال */
+
+.question-form {
+    width: 500px;
+    background: linear-gradient(180deg,#1E293B,#020617);
+    padding: 35px;
+    border-radius: 18px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.7);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 50px;
+}
+
+
+    /* عنوان الفورم */
+
+    .question-form h3 {
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+
+    /* الحقول */
+
+    .question-form input,
+    .question-form select {
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #334155;
+        background: #020617;
+        color: white;
+        font-size: 14px;
+        transition: .2s;
+    }
+
+        .question-form input:focus,
+        .question-form select:focus {
+            outline: none;
+            border-color: #2563EB;
+            box-shadow: 0 0 10px rgba(37,99,235,.5);
+        }
+
+
+/* خيارات الإجابة */
+
+.option-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+    .option-row input[type="text"] {
+        flex: 1;
+    }
+
+
+/* أزرار الفورم */
+
+.form-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.save-btn {
+    background: #22c55e;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    background: #ef4444;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+/* شبكة الأسئلة */
+
+.questions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+    gap: 25px;
+    width: 100%;
+    max-width: 1000px;
+}
+
+
+/* كارت السؤال */
+
+.question-card {
+    background: linear-gradient(180deg,#1E293B,#020617);
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0,0,0,.6);
+    text-align: center;
+    transition: .25s;
+}
+
+    .question-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 50px rgba(0,0,0,.8);
+    }
+
+
+/* النقاط */
+
+.question-points {
+    margin: 15px 0;
+    font-size: 18px;
+    opacity: .8;
+}
+
+
+/* أزرار الكارت */
+
+.card-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.edit-btn {
+    background: #2563EB;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+}
+
+.delete-btn {
+    background: #ef4444;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+}
+
+
+/* موبايل */
+
+@media(max-width:768px) {
+
+    .quiz-title {
+        font-size: 38px;
+    }
+
+    .question-form {
+        width: 100%;
+    }
+}
