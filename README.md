@@ -1,4 +1,4 @@
-# QuizGame Platform
+# Brain Battle Platform
 
 Full Stack Quiz Platform built with:
 
